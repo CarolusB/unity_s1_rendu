@@ -16,27 +16,34 @@ public class Box : MonoBehaviour
     private SpriteRenderer spriteOfCurrent;
     public float trolleySpeed;
     private bool received = false;
+    public GameObject characPos;
+    private CharacterFrame characFrame;
+    private bool coRoutineOn = false;
 
     void Start()
     {
         boxArray = boxPosKeeper.GetComponent<BoxPos>();
         spriteOfNext = boxArray.boxes[iD + 1].GetComponent<SpriteRenderer>();
         spriteOfCurrent = gameObject.GetComponent<SpriteRenderer>();
+
         breakSprite = breakFrame.GetComponent<SpriteRenderer>();
         breakSprite.enabled = false;
+
+        characFrame = characPos.GetComponent<CharacterFrame>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (spriteOfCurrent.enabled)
+        if (spriteOfCurrent.enabled && !coRoutineOn)
         {
-            if (needPickUp == true)
+            if (needPickUp)
             {
                 //Character makes transit or the box breaks
                 StartCoroutine(OnEdge(trolleySpeed));
 
-                if (received == true)
+                if (received)
                 {
                     StartCoroutine(NormalStep(0.2f));
                 }
@@ -51,6 +58,7 @@ public class Box : MonoBehaviour
 
     IEnumerator NormalStep(float delay)
     {
+        coRoutineOn = true;
         yield return new WaitForSeconds(delay);
 
         spriteOfNext.enabled = true;
@@ -58,17 +66,36 @@ public class Box : MonoBehaviour
 
         spriteOfCurrent.enabled = false;
         boxArray.boxHere[iD] = false;
+
+        if (needPickUp)
+        {
+            spriteOfCurrent.enabled = false;
+            characFrame.pickUpFrame_2.SetActive(true);
+            characFrame.pickUpFrame_1.SetActive(false);
+
+            yield return new WaitForSeconds(0.2f);
+
+            characFrame.pickUpFrame_1.SetActive(true);
+            characFrame.pickUpFrame_2.SetActive(false);
+
+        }
+
+        coRoutineOn = false;
     }
 
     IEnumerator OnEdge(float delay)
     {
+        coRoutineOn = true;
+
         yield return new WaitForSeconds(delay);
 
-        if (received == false)
+        if (!received)
         {
             breakSprite.enabled = true;
             spriteOfCurrent.enabled = false;
         }
+
+        coRoutineOn = false;
     }
 
     public void SetReceived(bool check)

@@ -13,13 +13,9 @@ public class CharacterPickup : MonoBehaviour
         boxState = edgeBox.GetComponent<Box>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnEnable()
     {
-        if (collision.gameObject.tag == "EdgeBox")
-        {
-            boxState.SetReceived(true);
-        }
-        
+        boxState.SetReceived(true);
     }
 
     private void OnDisable()
