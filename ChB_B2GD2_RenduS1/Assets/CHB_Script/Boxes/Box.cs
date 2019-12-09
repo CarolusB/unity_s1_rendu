@@ -31,12 +31,12 @@ public class Box : MonoBehaviour
     {
         if (spriteOfCurrent.enabled)
         {
-            if (needPickUp)
+            if (needPickUp == true)
             {
                 //Character makes transit or the box breaks
                 StartCoroutine(OnEdge(trolleySpeed));
 
-                if (received)
+                if (received == true)
                 {
                     StartCoroutine(NormalStep(0.2f));
                 }
@@ -64,7 +64,7 @@ public class Box : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        if (!received)
+        if (received == false)
         {
             breakSprite.enabled = true;
             spriteOfCurrent.enabled = false;

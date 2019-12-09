@@ -19,6 +19,7 @@ public class CharacterPickup : MonoBehaviour
         {
             boxState.SetReceived(true);
         }
+        
     }
 
     private void OnDisable()
