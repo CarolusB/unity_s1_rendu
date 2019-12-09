@@ -9,27 +9,42 @@ public class Box : MonoBehaviour
     private int iD;
     public bool needPickUp;
     public GameObject breakFrame;
+    private SpriteRenderer breakSprite;
     public GameObject boxPosKeeper;
     private BoxPos boxArray;
-    public bool isReceived;
+    private SpriteRenderer spriteOfNext;
+    private SpriteRenderer spriteOfCurrent;
+    public float trolleySpeed;
+    private bool received = false;
 
     void Start()
     {
         boxArray = boxPosKeeper.GetComponent<BoxPos>();
+        spriteOfNext = boxArray.boxes[iD + 1].GetComponent<SpriteRenderer>();
+        spriteOfCurrent = gameObject.GetComponent<SpriteRenderer>();
+        breakSprite = breakFrame.GetComponent<SpriteRenderer>();
+        breakSprite.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponent<SpriteRenderer>().enabled)
+        if (spriteOfCurrent.enabled)
         {
             if (needPickUp)
             {
                 //Character makes transit or the box breaks
+                StartCoroutine(OnEdge(trolleySpeed));
+
+                if (received)
+                {
+                    StartCoroutine(NormalStep(0.2f));
+                }
             }
             else
             {
-                StartCoroutine(NormalStep(3f));
+                //Proceed to light next box frame
+                StartCoroutine(NormalStep(trolleySpeed));
             }
         }
     }
@@ -38,10 +53,26 @@ public class Box : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        boxArray.boxes[iD + 1].GetComponent<SpriteRenderer>().enabled = true;
+        spriteOfNext.enabled = true;
         boxArray.boxHere[iD + 1] = true;
 
-        boxArray.boxes[iD].GetComponent<SpriteRenderer>().enabled = false;
+        spriteOfCurrent.enabled = false;
         boxArray.boxHere[iD] = false;
+    }
+
+    IEnumerator OnEdge(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (!received)
+        {
+            breakSprite.enabled = true;
+            spriteOfCurrent.enabled = false;
+        }
+    }
+
+    public void SetReceived(bool check)
+    {
+        received = check;
     }
 }

@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class BoxPos : MonoBehaviour
 {
-    public GameObject[] boxes = new GameObject[43];
-    public bool[] boxHere = new bool[43];
+    public GameObject[] boxes = new GameObject[48];
+    public bool[] boxHere = new bool[48];
     void Start()
     {
-        for (int i = 0; i<44; i++)
+        for (int i = 1; i<48; i++)
         {
             boxHere[i] = false;
+            boxes[i].GetComponent<SpriteRenderer>().enabled = false;
         }
+
+
     }
 
     // Update is called once per frame
