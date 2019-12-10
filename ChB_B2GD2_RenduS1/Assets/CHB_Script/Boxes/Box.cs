@@ -5,20 +5,31 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     [SerializeField]
-    [Range(0, 42)]
+    [Range(0, 48)]
     private int iD;
     public bool needPickUp;
+
     public GameObject breakFrame;
     private SpriteRenderer breakSprite;
+
     public GameObject boxPosKeeper;
     private BoxPos boxArray;
     private SpriteRenderer spriteOfNext;
     private SpriteRenderer spriteOfCurrent;
+    private bool currentIsLit;
+
     public float trolleySpeed;
     private bool received = false;
+
     public GameObject characPos;
     private CharacterFrame characFrame;
+
     private bool coRoutineOn = false;
+    private bool alreadyPicked = false;
+
+    public SpriteRenderer CurrentSprite {
+        get { return spriteOfCurrent; }
+    }
 
     void Start()
     {
@@ -69,6 +80,8 @@ public class Box : MonoBehaviour
 
         if (needPickUp)
         {
+            alreadyPicked = true;
+
             spriteOfCurrent.enabled = false;
             characFrame.pickUpFrame_2.SetActive(true);
             characFrame.pickUpFrame_1.SetActive(false);
@@ -89,12 +102,13 @@ public class Box : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        if (!received)
+        if (!received && !alreadyPicked)
         {
             breakSprite.enabled = true;
             spriteOfCurrent.enabled = false;
         }
 
+        alreadyPicked = false;
         coRoutineOn = false;
     }
 
