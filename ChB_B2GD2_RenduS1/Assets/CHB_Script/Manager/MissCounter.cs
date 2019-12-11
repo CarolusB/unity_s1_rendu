@@ -9,7 +9,7 @@ public class MissCounter : MonoBehaviour
 
     public GameObject[] missFaces = new GameObject[3];
     private int missCount = 0;
-    private bool coRoutineOn = false;
+    //private bool coRoutineOn = false;
 
     public GameObject boxSpawner;
     private BoxSpawn spawnComponent;
@@ -46,8 +46,7 @@ public class MissCounter : MonoBehaviour
                 if (breakSprites[i].enabled)
                 {
                     missFaces[missCount].SetActive(true);
-
-                    StartCoroutine(DelayedTickOff(1.2f));
+                    DoDelay();
                     breakSprites[i].enabled = false;
                     missCount++;
                     spawnComponent.BoxHasBroken();
@@ -63,6 +62,11 @@ public class MissCounter : MonoBehaviour
         Debug.Log("Nb of misses: " + missCount);
     }
 
+    
+    void DoDelay()
+    {
+        StartCoroutine(DelayedTickOff(0.4f));
+    }
     IEnumerator DelayedTickOff(float delay)
     {
         Time.timeScale = 0f;
