@@ -11,16 +11,24 @@ public class MissCounter : MonoBehaviour
     private int missCount = 0;
     private bool coRoutineOn = false;
 
+    public GameObject boxSpawner;
+    private BoxSpawn spawnComponent;
+
+    public SceneSwitcher sceneSwitcher;
+
     private void Awake()
     {
         for (int i = 0; i < 3; i++)
         {
             breakSprites[i] = breakFrames[i].GetComponent<SpriteRenderer>();
             breakSprites[i].enabled = true;
+            missFaces[i].SetActive(true);
         }
     }
     void Start()
     {
+        spawnComponent = boxSpawner.GetComponent<BoxSpawn>();
+
         for (int i = 0; i < 3; i++)
         {
             breakSprites[i].enabled = false;
@@ -42,9 +50,14 @@ public class MissCounter : MonoBehaviour
                     StartCoroutine(DelayedTickOff(1.2f));
                     breakSprites[i].enabled = false;
                     missCount++;
+                    spawnComponent.BoxHasBroken();
 
                 }
             }
+        }
+        else
+        {
+            sceneSwitcher.ToGameOver();
         }
 
         Debug.Log("Nb of misses: " + missCount);

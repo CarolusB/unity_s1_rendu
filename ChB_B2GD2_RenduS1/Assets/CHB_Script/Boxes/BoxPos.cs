@@ -8,7 +8,7 @@ public class BoxPos : MonoBehaviour
     public bool[] boxHere = new bool[49];
     void Start()
     {
-        for (int i = 1; i<48; i++)
+        for (int i = 0; i<48; i++)
         {
             boxHere[i] = false;
             boxes[i].GetComponent<SpriteRenderer>().enabled = false;

@@ -98,4 +98,5 @@ MonoBehaviour:
   breakFrame: {fileID: 0}
   boxPosKeeper: {fileID: 7150093553701095030, guid: 31f2c97caba62eb4b9f90978c00ec04d,
     type: 3}
-  trolleySpeed: 1
+  trolleySpeed: 1.4
+  characPos: {fileID: 0}
