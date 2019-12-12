@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreKeeper : MonoBehaviour
+public class ScoreKeeper : MenuScore
 {
     public GameObject[] truck = new GameObject[10];
     private SpriteRenderer[] inTruckSprites = new SpriteRenderer[10];
@@ -11,8 +11,9 @@ public class ScoreKeeper : MonoBehaviour
     private BoxPos boxArray;
     private SpriteRenderer droppingBox;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         boxArray = boxPosKeeper.GetComponent<BoxPos>();
         droppingBox = boxArray.boxes[48].GetComponent<SpriteRenderer>();
 
@@ -24,8 +25,9 @@ public class ScoreKeeper : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (droppingBox.enabled)
         {
             DoDelay();
@@ -34,12 +36,12 @@ public class ScoreKeeper : MonoBehaviour
             {
                 droppingBox.enabled = false;
                 inTruckSprites[slotToFill].enabled = true;
-                //Tick up score
+                scorePersitent.TickUpScore(10);
                 slotToFill++;
             }
             else
             {
-                //Tick up score
+                scorePersitent.TickUpScore(10);
                 //Load rest scene
             }
         }
