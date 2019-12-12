@@ -10,6 +10,9 @@ public class ScoreKeeper : MenuScore
     public GameObject boxPosKeeper;
     private BoxPos boxArray;
     private SpriteRenderer droppingBox;
+    private bool[] floorCanScore = new bool[5];
+
+    public SceneSwitcher sceneSwitcher;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -21,6 +24,11 @@ public class ScoreKeeper : MenuScore
         {
             inTruckSprites[i] = truck[i].GetComponent<SpriteRenderer>();
             inTruckSprites[i].enabled = false;
+        }
+
+        for (int f = 0; f < 5; f++)
+        {
+            floorCanScore[f] = true;
         }
     }
 
@@ -42,11 +50,68 @@ public class ScoreKeeper : MenuScore
             else
             {
                 scorePersitent.TickUpScore(10);
-                //Load rest scene
+                sceneSwitcher.Rest();
             }
+        }
+
+        //Plus opti de drag and drop les box de transition et leurs suivantes et faire appel à un for
+        if (boxArray.boxHere[3] && floorCanScore[0])
+        {
+            scorePersitent.TickUpScore(1);
+            floorCanScore[0] = false;
+        }
+
+        if (boxArray.boxHere[4] && !floorCanScore[0])
+        {
+            floorCanScore[0] = true;
+        }
+
+        if (boxArray.boxHere[12] && floorCanScore[1])
+        {
+            scorePersitent.TickUpScore(1);
+            floorCanScore[1] = false;
+        }
+
+        if (boxArray.boxHere[13] && !floorCanScore[1])
+        {
+            floorCanScore[1] = true;
+        }
+
+        if (boxArray.boxHere[21] && floorCanScore[2])
+        {
+            scorePersitent.TickUpScore(1);
+            floorCanScore[2] = false;
+        }
+
+        if (boxArray.boxHere[22] && !floorCanScore[2])
+        {
+            floorCanScore[2] = true;
+        }
+
+        if (boxArray.boxHere[30] && floorCanScore[3])
+        {
+            scorePersitent.TickUpScore(1);
+            floorCanScore[3] = false;
+        }
+
+        if (boxArray.boxHere[31] && !floorCanScore[3])
+        {
+            floorCanScore[3] = true;
+        }
+
+        if (boxArray.boxHere[39] && floorCanScore[4])
+        {
+            scorePersitent.TickUpScore(1);
+            floorCanScore[4] = false;
+        }
+
+        if (boxArray.boxHere[40] && !floorCanScore[4])
+        {
+            floorCanScore[4] = true;
         }
     }
 
+    
     void DoDelay()
     {
         StartCoroutine(Delay());

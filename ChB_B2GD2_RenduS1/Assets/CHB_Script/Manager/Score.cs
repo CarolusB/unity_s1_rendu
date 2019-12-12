@@ -6,6 +6,7 @@ using UnityEngine;
 public class Score : ScriptableObject
 {
     private static int score = 0;
+    private static int missSaver = 0;
 
     public void TickUpScore(int points)
     {
@@ -15,5 +16,24 @@ public class Score : ScriptableObject
     public int DisplayScore()
     {
         return score;
+    }
+
+    public void TickUpMisses()
+    {
+        missSaver++;
+    }
+
+    public int GetMisses()
+    {
+        return missSaver;
+    }
+
+    public void ResScores()
+    {
+        score = 0;
+    }
+    public void ResMisses()
+    {
+        missSaver = 0;
     }
 }

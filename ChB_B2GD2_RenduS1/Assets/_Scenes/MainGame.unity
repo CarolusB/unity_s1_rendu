@@ -2508,8 +2508,8 @@ Canvas:
   m_GameObject: {fileID: 542263721}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2518,7 +2518,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &542263725
 RectTransform:
@@ -2531,8 +2531,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1070043804}
   - {fileID: 1608519720}
+  - {fileID: 1070043804}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4685,8 +4685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09810de012e3bb54aadf7e864db92d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePersitent: {fileID: 0}
-  scoreCounter: {fileID: 0}
+  scorePersitent: {fileID: 11400000, guid: 11aed0d51f0f67f409dfbe2192626b97, type: 2}
+  scoreCounter: {fileID: 1070043803}
   truck:
   - {fileID: 830198251}
   - {fileID: 582065765}
@@ -4697,8 +4697,9 @@ MonoBehaviour:
   - {fileID: 1121385308}
   - {fileID: 381650880}
   - {fileID: 214614914}
-  - {fileID: 0}
-  boxPosKeeper: {fileID: 0}
+  - {fileID: 1899828240}
+  boxPosKeeper: {fileID: 325507025}
+  sceneSwitcher: {fileID: 0}
 --- !u!4 &946818548
 Transform:
   m_ObjectHideFlags: 0
@@ -5166,16 +5167,16 @@ RectTransform:
   m_GameObject: {fileID: 1070043803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 542263725}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -402.62, y: -227.28}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -106, y: -97}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1070043805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5189,7 +5190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7149,7 +7150,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1510060502}
-  - component: {fileID: 1510060503}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -7172,32 +7172,6 @@ Transform:
   m_Father: {fileID: 946818548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1510060503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1510060501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09810de012e3bb54aadf7e864db92d64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scorePersitent: {fileID: 11400000, guid: 11aed0d51f0f67f409dfbe2192626b97, type: 2}
-  scoreCounter: {fileID: 1070043803}
-  truck:
-  - {fileID: 830198251}
-  - {fileID: 582065765}
-  - {fileID: 2138546127}
-  - {fileID: 1116533318}
-  - {fileID: 1886741217}
-  - {fileID: 2022064056}
-  - {fileID: 1121385308}
-  - {fileID: 381650880}
-  - {fileID: 214614914}
-  - {fileID: 1899828240}
-  boxPosKeeper: {fileID: 325507025}
 --- !u!1 &1529105206
 GameObject:
   m_ObjectHideFlags: 0
@@ -7472,72 +7446,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1584847803}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1600462768
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1600462771}
-  - component: {fileID: 1600462770}
-  - component: {fileID: 1600462769}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1600462769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600462768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1600462770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600462768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1600462771
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600462768}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1600677479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7824,11 +7732,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608519718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -413.96, y: -232.98, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.4, y: 0.4, z: 0}
+  m_LocalScale: {x: 21.23629, y: 21.23629, z: 21.23629}
   m_Children: []
   m_Father: {fileID: 542263725}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617785165
 GameObject:
@@ -7868,6 +7776,7 @@ MonoBehaviour:
   - {fileID: 104442758}
   - {fileID: 1131355531}
   boxSpawner: {fileID: 1534121375}
+  scorePersistent: {fileID: 11400000, guid: 11aed0d51f0f67f409dfbe2192626b97, type: 2}
   sceneSwitcher: {fileID: 11400000, guid: 62a2667e1ca68554aa6e45b19eddffb7, type: 2}
 --- !u!4 &1617785167
 Transform:

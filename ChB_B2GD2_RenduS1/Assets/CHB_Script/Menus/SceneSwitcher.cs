@@ -19,4 +19,14 @@ public class SceneSwitcher : ScriptableObject
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void Rest()
+    {
+        SceneManager.LoadScene("RestScene");
+    }
+
+    public void FullFrameLit()
+    {
+        SceneManager.LoadScene("FullFrameLit");
+    }
 }
