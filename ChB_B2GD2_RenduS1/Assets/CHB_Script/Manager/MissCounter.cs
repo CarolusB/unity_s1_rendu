@@ -17,6 +17,8 @@ public class MissCounter : MonoBehaviour
     public Score scorePersistent;
     public SceneSwitcher sceneSwitcher;
 
+    private bool timeFrozen = false;
+
     private void Awake()
     {
         for (int i = 0; i < 3; i++)
@@ -47,17 +49,10 @@ public class MissCounter : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                if (breakSprites[i].enabled)
+                if (breakSprites[i].enabled && !timeFrozen)
                 {
-                    missFaces[missCount].SetActive(true);
-                    DoDelay();
-                    breakSprites[i].enabled = false;
-
-                    missCount++;
-                    scorePersistent.TickUpMisses();
-
-                    spawnComponent.BoxHasBroken();
-
+                    
+                    StartCoroutine(DelayedTickOff(0.4f, i));
                 }
             }
         }
@@ -70,15 +65,21 @@ public class MissCounter : MonoBehaviour
     }
 
     
-    void DoDelay()
+    
+    IEnumerator DelayedTickOff(float delay, int b)
     {
-        StartCoroutine(DelayedTickOff(0.4f));
-    }
-    IEnumerator DelayedTickOff(float delay)
-    {
+        timeFrozen = true;
         Time.timeScale = 0f;
+        missFaces[missCount].SetActive(true);
         yield return new WaitForSecondsRealtime(delay);
+        breakSprites[b].enabled = false;
+
+        missCount++;
+        scorePersistent.TickUpMisses();
+
+        spawnComponent.BoxHasBroken();
         Time.timeScale = 1f;
+        timeFrozen = false;
     }
 
 
