@@ -6,6 +6,7 @@ public class ScoreKeeper : MenuScore
 {
     public GameObject[] truck = new GameObject[10];
     private SpriteRenderer[] inTruckSprites = new SpriteRenderer[10];
+    [SerializeField]
     private int slotToFill = 0;
     public GameObject boxPosKeeper;
     private BoxPos boxArray;
@@ -36,9 +37,10 @@ public class ScoreKeeper : MenuScore
     protected override void Update()
     {
         base.Update();
+        CheckTransmit();
         if (droppingBox.enabled)
         {
-            DoDelay();
+            //DoDelay();
 
             if (slotToFill < 9)
             {
@@ -54,6 +56,12 @@ public class ScoreKeeper : MenuScore
             }
         }
 
+        
+        
+    }
+
+    void CheckTransmit()
+    {
         //Plus opti de drag and drop les box de transition et leurs suivantes et faire appel à un for
         if (boxArray.boxHere[3] && floorCanScore[0])
         {
@@ -111,7 +119,6 @@ public class ScoreKeeper : MenuScore
         }
     }
 
-    
     void DoDelay()
     {
         StartCoroutine(Delay());

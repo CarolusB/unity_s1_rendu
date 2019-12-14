@@ -8,25 +8,25 @@ public class SceneSwitcher : ScriptableObject
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene(sceneBuildIndex:1);
     }
     public void ToGameOver()
     {
-        SceneManager.LoadScene("GameOverScreen");
+        SceneManager.LoadScene(sceneBuildIndex:4);
     }
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(sceneBuildIndex:0);
     }
 
     public void Rest()
     {
-        SceneManager.LoadScene("RestScene");
+        SceneManager.LoadScene(sceneBuildIndex:3);
     }
 
     public void FullFrameLit()
     {
-        SceneManager.LoadScene("FullFrameLit");
+        SceneManager.LoadScene(sceneBuildIndex:2);
     }
 }

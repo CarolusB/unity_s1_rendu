@@ -45,6 +45,7 @@ public class MissCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Nb of misses: " + missCount);
         if (missCount < 3)
         {
             for (int i = 0; i < 3; i++)
